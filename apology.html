@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Landing Section */
+        #landing {
+            background: linear-gradient(135deg, #1a0a1e 0%, #2d1b3d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-marks {
+            position: absolute;
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.15);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .question-marks.left {
+            left: 10%;
+            top: 20%;
+        }
+
+        .question-marks.left:nth-child(2) {
+            left: 15%;
+            top: 50%;
+            animation-delay: 1s;
+        }
+
+        .question-marks.left:nth-child(3) {
+            left: 8%;
+            top: 70%;
+            animation-delay: 2s;
+        }
+
+        .question-marks.right {
+            right: 10%;
+            top: 30%;
+        }
+
+        .question-marks.right:nth-child(5) {
+            right: 12%;
+            top: 60%;
+            animation-delay: 1.5s;
+        }
+
+        .question-marks.right:nth-child(6) {
+            right: 18%;
+            top: 80%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 0 20px 60px rgba(255, 20, 147, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sorry-button {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff1744 0%, #ff4081 100%);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 23, 68, 0.4);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .sorry-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 23, 68, 0.6);
+        }
+
+        /* Collage Section */
+        #collage {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        #collage.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+
+        .notebook-paper {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(to right, #f9f7f1 0%, #f9f7f1 40px, #fff 40px);
+            padding: 40px 40px 40px 60px;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .notebook-paper::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ff6b6b;
+        }
+
+        .notebook-lines {
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 29px,
+                #d4d4d4 29px,
+                #d4d4d4 30px
+            );
+            line-height: 30px;
+            color: #333;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+
+        .notebook-lines p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Spotify Cards Section */
+        #spotify-section {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+            flex-direction: column;
+        }
+
+        #spotify-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .spotify-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Main Spotify Card */
+        .main-spotify-card {
+            width: 400px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            animation: slideUp 1s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .album-art {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .song-info {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .song-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .song-artist {
+            font-size: 16px;
+            color: #b3b3b3;
+        }
+
+        /* Spotify Controls */
+        .spotify-controls {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #4d4d4d;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #fff;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #b3b3b3;
+            margin-bottom: 15px;
+        }
+
+        .control-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: #b3b3b3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .control-btn:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Side Lyric Cards */
+        .lyric-card {
+            width: 320px;
+            background: linear-gradient(135deg, #1e90ff 0%, #4169e1 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            animation: slideUp 1s ease;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .lyric-card.left {
+            animation-delay: 0.2s;
+        }
+
+        .lyric-card.right {
+            animation-delay: 0.4s;
+        }
+
+        .lyric-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .lyric-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .lyric-song-info h3 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .lyric-song-info p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .lyric-text {
+            font-size: 15px;
+            line-height: 1.8;
+            font-weight: 400;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .lyric-section {
+            margin-bottom: 20px;
+        }
+
+        .lyric-section-title {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .spotify-logo {
+            width: 100px;
+            margin-top: 20px;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .spotify-container {
+                flex-direction: column;
+            }
+
+            .lyric-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .phone-mockup {
+                width: 280px;
+                height: 570px;
+            }
+
+            .sorry-button {
+                padding: 12px 35px;
+                font-size: 15px;
+            }
+
+            .main-spotify-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .question-marks {
+                font-size: 30px;
+            }
+
+            .notebook-paper {
+                padding: 30px 30px 30px 50px;
+            }
+
+            .notebook-lines {
+                font-size: 14px;
+                line-height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Section -->
+    <section id="landing">
+        <div class="question-marks left">"As if Girlfriend's Day pe kuch kiya lmao"</div>
+        <div class="question-marks left">"You dont have only about putting efforts"</div>
+        <div class="question-marks left">"Sada hua old flowers you brought"</div>
+        <div class="question-marks right">?</div>
+        <div class="question-marks right">"Your marathon ruined my first Valentine's Day"</div>
+        <div class="question-marks right">15% perfect Boyfriend</div>
+        
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <img src="WhatsApp Image 2025-10-02 at 01.56.49_5a58507e.jpg" alt="Instagram Story" class="story-image">
+                <button class="sorry-button" onclick="scrollToNext()">I'm Sorry ❤️</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collage Section -->
+    <section id="collage" style="background-image: url('Beige Aesthetic Photo Collage Vision Board Landscape Poster.jpg');">
+        <div class="overlay"></div>
+        <div class="notebook-paper">
+            <div class="notebook-lines">
+                <p>I know I may not be the best in this domain</p>
+                <p>(I'm the worst - This is going on in your mind</p>
+                <p>right now😒), but then you deserve more</p>
+                <p>effort from me💔</p>
+                <p></p>
+                <p>And for that I sincerely apologise to you.</p>
+		<p>Kindly scroll down and play😘</p>
+                <p></p>
+                <p>(Headphones are recommended for this</p>
+                <p>apology😉)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spotify Cards Section -->
+    <section id="spotify-section" style="background-image: url('Beige Aesthetic Photo Collage Vision Board Landscape Poster.jpg');">
+        <div class="overlay"></div>
+        <div class="spotify-container">
+            <!-- Left Lyric Card -->
+            <div class="lyric-card left">
+                <div class="lyric-header">
+                    <div class="lyric-icon">🎵</div>
+                    <div class="lyric-song-info">
+                        <h3>I'M SORRY BABYY</h3>
+                        <p>Stevahh Anthony</p>
+                    </div>
+                </div>
+                <div class="lyric-text">
+                    <div class="lyric-section">
+                        <div class="lyric-section-title">Verse 1</div>
+                        I missed October first, yeah I forgot again,<br>
+                        You wanted magic, but I brought the same.<br>
+                        Just one picture, no effort, no art,<br>
+                        Lazy little Stevah breaking your heart.
+                    </div>
+                    <div class="lyric-section">
+                        <div class="lyric-section-title">Chorus</div>
+                        Oh I'm sorry, baby, I messed it up (I know),<br>
+                        Predictable me, it's the same old show.<br>
+                        But I love you, darling, more than I can prove,<br>
+                        Even when I'm clumsy, my heart's with you.
+                    </div>
+                    <div class="lyric-section">
+                        <div class="lyric-section-title">Verse 2</div>
+                        You asked for a story, collage full of light,<br>
+                        I gave you glamour, but not what you liked.
+                    </div>
+                </div>
+                <svg class="spotify-logo" viewBox="0 0 1134 340" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M170 0C76.3 0 0 76.3 0 170s76.3 170 170 170 170-76.3 170-170S263.7 0 170 0zm78.1 245.3c-3.1 5.1-9.7 6.7-14.8 3.6-40.6-24.8-91.7-30.4-151.9-16.7-5.8 1.3-11.5-2.2-12.8-8-.3-1.4-.3-2.8 0-4.2 1.3-5.8 7-9.4 12.8-8 66.5-15.1 123.4-8.6 168.8 19.3 5.1 3.1 6.7 9.7 3.6 14.8-.7 1.1-1.6 2.1-2.7 2.8-.4.2-.7.3-1 .4zm21.1-47c-3.9 6.3-12.2 8.3-18.5 4.4-46.5-28.6-117.3-36.8-172.3-20.2-7.1 2.1-14.6-1.9-16.7-9s1.9-14.6 9-16.7c62.8-19 141.4-9.8 194.5 23 6.3 3.9 8.3 12.2 4.4 18.5-.9 1.4-2 2.7-3.4 3.7.3-.2.6-.5 1-1.1.4-.6.7-1.3 1-1.9l1-1.7zm1.8-49.1c-55.8-33.2-147.9-36.2-201.1-20-8.5 2.6-17.5-2.2-20.1-10.7-2.6-8.5 2.2-17.5 10.7-20.1 61-18.6 162.5-15 226.7 23.1 7.8 4.6 10.4 14.7 5.8 22.5-4.6 7.8-14.7 10.4-22.5 5.8-.5-.3-1-.6-1.4-.9l1.9 1.2z"/>
+                </svg>
+            </div>
+
+            <!-- Main Spotify Card -->
+            <div class="main-spotify-card">
+                <div class="album-art">
+                    <img src="WhatsApp Image 2025-10-02 at 02.06.48_622aa3e2.jpg" alt="Album Art">
+                </div>
+                <div class="song-info">
+                    <div class="song-title">I'M SORRY BABYY</div>
+                    <div class="song-artist">Stevahh Anthony</div>
+                </div>
+                <div class="spotify-controls">
+                    <div class="progress-bar" onclick="seekAudio(event)">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="time-labels">
+                        <span id="currentTime">0:00</span>
+                        <span id="duration">3:36</span>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="skipBackward()">⏮</button>
+                        <button class="control-btn">⏪</button>
+                        <div class="play-btn" onclick="togglePlay()" id="playBtn">▶️</div>
+                        <button class="control-btn">⏩</button>
+                        <button class="control-btn" onclick="skipForward()">⏭</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Lyric Card -->
+            <div class="lyric-card right">
+                <div class="lyric-header">
+                    <div class="lyric-icon">🎵</div>
+                    <div class="lyric-song-info">
+                        <h3>I'M SORRY BABU</h3>
+                        <p>Original Song</p>
+                    </div>
+                </div>
+                <div class="lyric-text">
+                    <div class="lyric-section">
+                        You said "make a website," I thought it was sweet,<br>
+                        But I'm just repeating what you did for me.
+                    </div>
+                    <div class="lyric-section">
+                        <div class="lyric-section-title">Bridge</div>
+                        Call me a fool, call me the worst,<br>
+                        I'll still love you forever, for better or worse.<br>
+                        You're mad but you love me, that's how I know,<br>
+                        I'm your cute little Stevah, never letting go.
+                    </div>
+                    <div class="lyric-section">
+                        <div class="lyric-section-title">Final Chorus</div>
+                        Oh I'm sorry, baby, I messed it up (I know)<br>
+                        Predictable me, it's the same old show.<br>
+                        But I love you, darling, more than I can prove,<br>
+                        Even when I'm clumsy, my heart's with you.
+                    </div>
+                </div>
+                <svg class="spotify-logo" viewBox="0 0 1134 340" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M170 0C76.3 0 0 76.3 0 170s76.3 170 170 170 170-76.3 170-170S263.7 0 170 0zm78.1 245.3c-3.1 5.1-9.7 6.7-14.8 3.6-40.6-24.8-91.7-30.4-151.9-16.7-5.8 1.3-11.5-2.2-12.8-8-.3-1.4-.3-2.8 0-4.2 1.3-5.8 7-9.4 12.8-8 66.5-15.1 123.4-8.6 168.8 19.3 5.1 3.1 6.7 9.7 3.6 14.8-.7 1.1-1.6 2.1-2.7 2.8-.4.2-.7.3-1 .4zm21.1-47c-3.9 6.3-12.2 8.3-18.5 4.4-46.5-28.6-117.3-36.8-172.3-20.2-7.1 2.1-14.6-1.9-16.7-9s1.9-14.6 9-16.7c62.8-19 141.4-9.8 194.5 23 6.3 3.9 8.3 12.2 4.4 18.5-.9 1.4-2 2.7-3.4 3.7.3-.2.6-.5 1-1.1.4-.6.7-1.3 1-1.9l1-1.7zm1.8-49.1c-55.8-33.2-147.9-36.2-201.1-20-8.5 2.6-17.5-2.2-20.1-10.7-2.6-8.5 2.2-17.5 10.7-20.1 61-18.6 162.5-15 226.7 23.1 7.8 4.6 10.4 14.7 5.8 22.5-4.6 7.8-14.7 10.4-22.5 5.8-.5-.3-1-.6-1.4-.9l1.9 1.2z"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic">
+        <source src="mix_2m40s (audio-joiner.com).mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        let isPlaying = false;
+
+        function togglePlay() {
+            if (isPlaying) {
+                music.pause();
+                playBtn.textContent = '▶️';
+                isPlaying = false;
+            } else {
+                music.play();
+                playBtn.textContent = '⏸';
+                isPlaying = true;
+            }
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        music.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(music.duration);
+        });
+
+        music.addEventListener('timeupdate', () => {
+            const progress = (music.currentTime / music.duration) * 100;
+            progressFill.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(music.currentTime);
+        });
+
+        music.addEventListener('ended', () => {
+            playBtn.textContent = '▶️';
+            isPlaying = false;
+            progressFill.style.width = '0%';
+        });
+
+        function seekAudio(event) {
+            const progressBar = event.currentTarget;
+            const clickX = event.offsetX;
+            const width = progressBar.offsetWidth;
+            const duration = music.duration;
+            music.currentTime = (clickX / width) * duration;
+        }
+
+        function skipForward() {
+            music.currentTime = Math.min(music.currentTime + 10, music.duration);
+        }
+
+        function skipBackward() {
+            music.currentTime = Math.max(music.currentTime - 10, 0);
+        }
+
+        function scrollToNext() {
+            document.getElementById('collage').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('#collage, #spotify-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
